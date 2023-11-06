@@ -39,3 +39,6 @@ h2 {
 ul {
   margin-block: 50px;
 }
+#changePage{
+  cursor: pointer;
+}
