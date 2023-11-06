@@ -97,3 +97,11 @@ const questions = [
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
   ];
+  
+  const buttonPage = document.querySelector("#changePage");
+
+  function setSecondPage(){
+    window.location.href = 'index.html';
+  }
+
+  buttonPage.addEventListener("click",setSecondPage);
