@@ -106,7 +106,6 @@ const scoreElement = document.querySelector("#score");
 let questionNumberIndex = 0;
 let score = 0;
 
-
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
   for (let i = 0; i < questions.length; i++) {
@@ -114,18 +113,38 @@ function setRandomOrder(questions) {
     [questions[i], questions[shuffle]] = [questions[shuffle], questions[i]];
   }
 }
+
 // Chiamiamo la variabile che detta un ordine casuale per il display delle domande subito prima di avviare la funzione che le mostra
 setRandomOrder(questions);
-
 
 // Creaimo una funzione per visualizzare la domanda corrente
 function displayQuestion() {
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerText = questionNumber.question;
-  option1Element.innerHTML = questionNumber.incorrect_answers[0];
-  option2Element.innerHTML = questionNumber.incorrect_answers[1];
-  option3Element.innerHTML = questionNumber.incorrect_answers[2];
-  option4Element.innerHTML = questionNumber.correct_answer;
+
+  const answerButtons = [
+    option1Element,
+    option2Element,
+    option3Element,
+    option4Element,
+  ];
+
+  // Nascondiamo tutti i pulsanti delle risposte
+  for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].style.display = "none";
+  }
+
+  // Mostrare solo i pulsanti per le risposte esistenti
+  for (let i = 0; i < questionNumber.incorrect_answers.length; i++) {
+    answerButtons[i].style.display = "block";
+    answerButtons[i].innerHTML = questionNumber.incorrect_answers[i];
+  }
+
+  // Mostrare il pulsante per la risposta corretta
+  answerButtons[questionNumber.incorrect_answers.length].style.display =
+    "block";
+  answerButtons[questionNumber.incorrect_answers.length].innerHTML =
+    questionNumber.correct_answer;
 }
 
 displayQuestion();
@@ -153,6 +172,7 @@ function handleAnswer(event) {
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
   }
 }
+
 // Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
 option1Element.addEventListener("click", handleAnswer);
 option2Element.addEventListener("click", handleAnswer);
