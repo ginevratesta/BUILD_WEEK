@@ -106,7 +106,7 @@ const scoreElement = document.querySelector("#score");
 let questionNumberIndex = 0;
 let score = 0;
 
-/*
+
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
   for (let i = 0; i < questions.length; i++) {
@@ -116,12 +116,12 @@ function setRandomOrder(questions) {
 }
 // Chiamiamo la variabile che detta un ordine casuale per il display delle domande subito prima di avviare la funzione che le mostra
 setRandomOrder(questions);
-*/
+
 
 // Creaimo una funzione per visualizzare la domanda corrente
 function displayQuestion() {
   const questionNumber = questions[questionNumberIndex];
-  questionElement.innerHTML = questionNumber.question;
+  questionElement.innerText = questionNumber.question;
   option1Element.innerHTML = questionNumber.incorrect_answers[0];
   option2Element.innerHTML = questionNumber.incorrect_answers[1];
   option3Element.innerHTML = questionNumber.incorrect_answers[2];
