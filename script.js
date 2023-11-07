@@ -106,6 +106,20 @@ const scoreElement = document.querySelector("#score");
 let questionNumberIndex = 0;
 let score = 0;
 
+
+/*
+// Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
+function setRandomOrder(questions) {
+  for (let i = 0; i < questions.length; i++) {
+    const shuffle = Math.floor(Math.random() * (i + 1));
+    [questions[i], questions[shuffle]] = [questions[shuffle], questions[i]];
+  }
+}
+// Chiamiamo la variabile che detta un ordine casuale per il display delle domande subito prima di avviare la funzione che le mostra
+setRandomOrder(questions);
+*/
+
+
 // Creaimo una funzione per visualizzare la domanda corrente
 function displayQuestion() {
   const questionNumber = questions[questionNumberIndex];
@@ -116,23 +130,19 @@ function displayQuestion() {
   option4Element.innerHTML = questionNumber.correct_answer;
 }
 
-// Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
-option1Element.addEventListener("click", handleAnswer);
-option2Element.addEventListener("click", handleAnswer);
-option3Element.addEventListener("click", handleAnswer);
-option4Element.addEventListener("click", handleAnswer);
+displayQuestion();
 
 // Creiamo una funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
   const selectedAnswer = event.target.innerHTML;
   const questionNumber = questions[questionNumberIndex];
-
+  
   if (selectedAnswer === questionNumber.correct_answer) {
     score++;
   }
-
+  
   questionNumberIndex++;
-
+  
   if (questionNumberIndex < questions.length) {
     displayQuestion();
   } else {
@@ -145,5 +155,9 @@ function handleAnswer(event) {
     scoreElement.innerHTML = `Punteggio finale: ${score} su ${questions.length}`;
   }
 }
+// Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
+option1Element.addEventListener("click", handleAnswer);
+option2Element.addEventListener("click", handleAnswer);
+option3Element.addEventListener("click", handleAnswer);
+option4Element.addEventListener("click", handleAnswer);
 
-displayQuestion();
