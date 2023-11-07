@@ -43,3 +43,7 @@ button:hover {
   border-bottom: #900080;
   border-right: #900080;
 }
+
+p{
+    color: white;
+}
