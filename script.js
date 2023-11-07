@@ -103,17 +103,17 @@ const option4Element = document.querySelector("#option4");
 const scoreElement = document.querySelector("#score");
 
 // Variabili per tenere traccia del quiz
-let currentQuestionIndex = 0;
+let questionNumberIndex = 0;
 let score = 0;
 
 // Funzione per visualizzare la domanda corrente
 function displayQuestion() {
-  const currentQuestion = questions[currentQuestionIndex];
-  questionElement.innerHTML = currentQuestion.question;
-  option1Element.innerHTML = currentQuestion.incorrect_answers[0];
-  option2Element.innerHTML = currentQuestion.incorrect_answers[1];
-  option3Element.innerHTML = currentQuestion.incorrect_answers[2];
-  option4Element.innerHTML = currentQuestion.correct_answer;
+  const questionNumber = questions[questionNumberIndex];
+  questionElement.innerHTML = questionNumber.question;
+  option1Element.innerHTML = questionNumber.incorrect_answers[0];
+  option2Element.innerHTML = questionNumber.incorrect_answers[1];
+  option3Element.innerHTML = questionNumber.incorrect_answers[2];
+  option4Element.innerHTML = questionNumber.correct_answer;
 }
 
 // Aggiunge un evento di click a ciascuna opzione per gestire la risposta
@@ -125,15 +125,15 @@ option4Element.addEventListener("click", handleAnswer);
 // Funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
   const selectedAnswer = event.target.innerHTML;
-  const currentQuestion = questions[currentQuestionIndex];
+  const questionNumber = questions[questionNumberIndex];
 
-  if (selectedAnswer === currentQuestion.correct_answer) {
+  if (selectedAnswer === questionNumber.correct_answer) {
     score++;
   }
 
-  currentQuestionIndex++;
+  questionNumberIndex++;
 
-  if (currentQuestionIndex < questions.length) {
+  if (questionNumberIndex < questions.length) {
     displayQuestion();
   } else {
     // Quiz completato, visualizza il punteggio finale
