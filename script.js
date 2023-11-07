@@ -150,7 +150,7 @@ function handleAnswer(event) {
     option2Element.style.display = "none";
     option3Element.style.display = "none";
     option4Element.style.display = "none";
-    scoreElement.innerHTML = `Punteggio finale: ${score} su ${questions.length}`;
+    scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
   }
 }
 // Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
