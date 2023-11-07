@@ -94,7 +94,7 @@ const questions = [
   },
 ];
 
-// Seleziona gli elementi HTML
+// Selezioniamo gli elementi HTML
 const questionElement = document.querySelector("#question");
 const option1Element = document.querySelector("#option1");
 const option2Element = document.querySelector("#option2");
@@ -102,11 +102,11 @@ const option3Element = document.querySelector("#option3");
 const option4Element = document.querySelector("#option4");
 const scoreElement = document.querySelector("#score");
 
-// Variabili per tenere traccia del quiz
+// Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
 let score = 0;
 
-// Funzione per visualizzare la domanda corrente
+// Creaimo una funzione per visualizzare la domanda corrente
 function displayQuestion() {
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerHTML = questionNumber.question;
@@ -116,13 +116,13 @@ function displayQuestion() {
   option4Element.innerHTML = questionNumber.correct_answer;
 }
 
-// Aggiunge un evento di click a ciascuna opzione per gestire la risposta
+// Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
 option1Element.addEventListener("click", handleAnswer);
 option2Element.addEventListener("click", handleAnswer);
 option3Element.addEventListener("click", handleAnswer);
 option4Element.addEventListener("click", handleAnswer);
 
-// Funzione per gestire la risposta dell'utente
+// Creiamo una funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
   const selectedAnswer = event.target.innerHTML;
   const questionNumber = questions[questionNumberIndex];
@@ -136,7 +136,7 @@ function handleAnswer(event) {
   if (questionNumberIndex < questions.length) {
     displayQuestion();
   } else {
-    // Quiz completato, visualizza il punteggio finale
+    // Quiz completato, visualizziamo il punteggio finale
     questionElement.innerHTML = "Quiz completato!";
     option1Element.style.display = "none";
     option2Element.style.display = "none";
