@@ -97,7 +97,7 @@ const questions = [
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
   ];
-  
+
   const buttonPage = document.querySelector("#changePage");
 
   function setSecondPage(){
@@ -105,3 +105,7 @@ const questions = [
   }
 
   buttonPage.addEventListener("click",setSecondPage);
+
+
+  
+  
