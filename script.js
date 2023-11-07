@@ -98,14 +98,65 @@ const questions = [
     },
   ];
 
-  const buttonPage = document.querySelector("#changePage");
+  
+  // Seleziona gli elementi HTML
+  const questionElement = document.getElementById("question");
+  const option1Element = document.getElementById("option1");
+  const option2Element = document.getElementById("option2");
+  const option3Element = document.getElementById("option3");
+const option4Element = document.getElementById("option4");
+const scoreElement = document.getElementById("score");
 
-  function setSecondPage(){
-    window.location.href = 'index.html';
+// Variabili per tenere traccia del quiz
+let currentQuestionIndex = 0;
+let score = 0;
+
+// Funzione per visualizzare la domanda corrente
+function displayQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.innerHTML = currentQuestion.question;
+  option1Element.innerHTML = currentQuestion.incorrect_answers[0];
+  option2Element.innerHTML = currentQuestion.incorrect_answers[1];
+  option3Element.innerHTML = currentQuestion.incorrect_answers[2];
+  option4Element.innerHTML = currentQuestion.correct_answer;
+}
+
+// Aggiunge un evento di click a ciascuna opzione per gestire la risposta
+option1Element.addEventListener("click", handleAnswer);
+option2Element.addEventListener("click", handleAnswer);
+option3Element.addEventListener("click", handleAnswer);
+option4Element.addEventListener("click", handleAnswer);
+
+// Funzione per gestire la risposta dell'utente
+function handleAnswer(event) {
+  const selectedAnswer = event.target.innerHTML;
+  const currentQuestion = questions[currentQuestionIndex];
+  
+  if (selectedAnswer === currentQuestion.correct_answer) {
+    score++;
   }
-
-  buttonPage.addEventListener("click",setSecondPage);
-
-
   
+  currentQuestionIndex++;
   
+  if (currentQuestionIndex < questions.length) {
+    displayQuestion();
+  } else {
+    // Quiz completato, visualizza il punteggio finale
+    questionElement.innerHTML = "Quiz completato!";
+    option1Element.style.display = "none";
+    option2Element.style.display = "none";
+    option3Element.style.display = "none";
+    option4Element.style.display = "none";
+    scoreElement.innerHTML = `Punteggio finale: ${score} su ${questions.length}`;
+  }
+}
+
+displayQuestion();
+
+const buttonPage = document.querySelector("#changePage");
+
+function setSecondPage(){
+  window.location.href = 'index.html';
+}
+
+buttonPage.addEventListener("click",setSecondPage);
