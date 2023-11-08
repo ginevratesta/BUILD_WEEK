@@ -149,7 +149,7 @@ function pageCounter() {
 function randomAnswers() {
   clearInterval(timer);
   countTimer = 30;
-  toAddTimer.innerText = countTimer + "s"; 
+  toAddTimer.innerText = countTimer + "s";
   timer = setInterval(setUpTimer, 1000)
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerText = questionNumber.question;
