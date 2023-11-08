@@ -137,7 +137,7 @@ const setUpTimer = function () {
 function randomAnswers() {
   clearInterval(timer);
   countTimer = 30;
-  toAddTimer.innerText = countTimer + "s"; 
+  toAddTimer.innerText = countTimer + "s";
   timer = setInterval(setUpTimer, 1000)
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerText = questionNumber.question;
@@ -208,3 +208,23 @@ function handleAnswer(event) {
 for (let i = 0; i <answerButtons.length; i++) {
   answerButtons[i].addEventListener("click", handleAnswer);
 }
+
+let contatore = 1;
+
+
+let counterDiv = document.getElementById('contatore');
+
+option1Element.addEventListener('click', function() {
+ contatore++;
+ counterDiv.textContent = 'QUESTION '+ contatore + ' /10';
+});
+option2Element.addEventListener('click', function() {
+ contatore++;
+ counterDiv.textContent =  'QUESTION '+ contatore + ' /10';
+});option3Element.addEventListener('click', function() {
+ contatore++;
+ counterDiv.textContent =  'QUESTION '+ contatore +' /10' ;
+});option4Element.addEventListener('click', function() {
+ contatore++;
+ counterDiv.textContent =  'QUESTION '+ contatore + ' /10';
+});
