@@ -170,6 +170,7 @@ function randomAnswers() {
 }
 randomAnswers();
 
+let timerCancelled = false;
 // Creiamo una funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
   let selectedAnswer; 
@@ -195,6 +196,10 @@ function handleAnswer(event) {
       answerButtons[i].style.display = "none";
     }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
+    
+    if (!timerCancelled) {
+      toAddTimer.style.display="none"
+    }
   }
 }
 
