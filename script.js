@@ -196,6 +196,10 @@ function handleAnswer(event) {
       answerButtons[i].style.display = "none";
     }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
+
+    if (!timerCancelled) {
+      toAddTimer.style.display="none"
+    }
   }
 }
 
