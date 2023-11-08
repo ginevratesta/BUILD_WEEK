@@ -125,7 +125,7 @@ const setUpTimer = function () {
   }
   if (countTimer === 0) {
     toAddTimer.innerText = 0 + "s";
-    clearInterval(timer);
+    /* clearInterval(timer); */
     handleAnswer();
   } else {
     toAddTimer.innerHTML = countTimer + "s";
@@ -134,7 +134,7 @@ const setUpTimer = function () {
 
 // Creaimo una funzione per visualizzare la domanda corrente
 function randomAnswers() {
-  /* toAddTimer.innerText = countTimer + "s"; */
+  clearInterval(timer);
   countTimer = 31;
   timer = setInterval(setUpTimer, 1000)
   const questionNumber = questions[questionNumberIndex];
@@ -152,7 +152,7 @@ function randomAnswers() {
     } else {
       const numberOfWrongAnswers =
         questionNumber.incorrect_answers.length;
-      if ((numberOfWrongAnswers === 1)) {
+      if (numberOfWrongAnswers === 1) {
          if (singleWrongAnswer === false) {
           answerButtons[l].innerText =
           questionNumber.incorrect_answers;
