@@ -170,6 +170,7 @@ function randomAnswers() {
 }
 randomAnswers();
 
+let timerCancelled = false;
 // Creiamo una funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
   let selectedAnswer; 
