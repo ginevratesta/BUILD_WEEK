@@ -104,8 +104,9 @@ const toAddTimer = document.querySelector("#countdown");
 let questionNumberIndex = 0;
 let answerIndex = 0;
 let score = 0;
-let countTimer = 31;
+let countTimer = 30;
 let timer;
+let timerCancelled = false;
 
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
@@ -135,7 +136,8 @@ const setUpTimer = function () {
 // Creaimo una funzione per visualizzare la domanda corrente
 function randomAnswers() {
   clearInterval(timer);
-  countTimer = 31;
+  countTimer = 30;
+  toAddTimer.innerText = countTimer + "s"; 
   timer = setInterval(setUpTimer, 1000)
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerText = questionNumber.question;
@@ -170,7 +172,6 @@ function randomAnswers() {
 }
 randomAnswers();
 
-let timerCancelled = false;
 // Creiamo una funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
   let selectedAnswer; 
@@ -196,20 +197,12 @@ function handleAnswer(event) {
       answerButtons[i].style.display = "none";
     }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> feature/TimerNone
     if (!timerCancelled) {
       toAddTimer.style.display="none"
     }
   }
 }
-
-//Impostiamo un timer per le risposte che cambi domanda alla scadenza e ricominci all'inizio della domanda successiva
-/* toAddTimer.innerText = countTimer + "s";  */
-
 
 // Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
 for (let i = 0; i <answerButtons.length; i++) {
