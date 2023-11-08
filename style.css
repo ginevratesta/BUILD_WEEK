@@ -58,3 +58,10 @@ p {
 #countdown {
   color: white;
 }
+
+#contatore {
+  color: white;
+  text-align: center;
+  margin-top: 120px;
+  font-size: small;
+}

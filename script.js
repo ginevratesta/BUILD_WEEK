@@ -99,6 +99,7 @@ const questionElement = document.querySelector("#question");
 const answerButtons = document.querySelectorAll(".button");
 const scoreElement = document.querySelector("#score");
 const toAddTimer = document.querySelector("#countdown");
+const counterTitle = document.querySelector('#contatore');
 
 // Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
@@ -107,6 +108,8 @@ let score = 0;
 let countTimer = 30;
 let timer;
 let timerCancelled = false;
+let contatore = 1;
+let pageCounterCancelled = false;
 
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
@@ -126,12 +129,21 @@ const setUpTimer = function () {
   }
   if (countTimer === 0) {
     toAddTimer.innerText = 0 + "s";
-    /* clearInterval(timer); */
     handleAnswer();
+    pageCounter();
   } else {
     toAddTimer.innerHTML = countTimer + "s";
   }
 }
+
+//Creiamo una funzione che indica a che domanda si è arrivati
+function pageCounter() {
+  if (contatore < 10) {
+    contatore++;
+    counterTitle.innerText = 'QUESTION ' + contatore + ' / 10';
+  }
+}
+
 
 // Creaimo una funzione per visualizzare la domanda corrente
 function randomAnswers() {
@@ -199,12 +211,18 @@ function handleAnswer(event) {
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
     
     if (!timerCancelled) {
-      toAddTimer.style.display="none"
+      toAddTimer.style.display = "none"
+    }
+
+    if(!pageCounterCancelled) {
+      counterTitle.style.display = "none"
     }
   }
 }
 
-// Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
+
+// Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta e conteggiare il numero di domande
 for (let i = 0; i <answerButtons.length; i++) {
   answerButtons[i].addEventListener("click", handleAnswer);
+  answerButtons[i].addEventListener('click', pageCounter);
 }
