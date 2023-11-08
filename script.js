@@ -96,15 +96,15 @@ const questions = [
 
 // Selezioniamo gli elementi HTML
 const questionElement = document.querySelector("#question");
-const option1Element = document.querySelector("#option1");
-const option2Element = document.querySelector("#option2");
-const option3Element = document.querySelector("#option3");
-const option4Element = document.querySelector("#option4");
+const answerButtons = document.querySelectorAll(".button");
 const scoreElement = document.querySelector("#score");
+const toAddTimer = document.querySelector("#countdown");
 
 // Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
+let answerIndex = 0;
 let score = 0;
+let count = 10;
 
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
@@ -122,31 +122,38 @@ function displayQuestion() {
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerText = questionNumber.question;
 
-  const answerButtons = [
-    option1Element,
-    option2Element,
-    option3Element,
-    option4Element,
-  ];
+  /*  const answerButtons = [
+    allButtons
+  ]; */
 
   // Nascondiamo tutti i pulsanti delle risposte
-  for (let i = 0; i < answerButtons.length; i++) {
-    answerButtons[i].style.display = "none";
+  let wrongAnswersIndex = 0
+  let singleWrongAnswer = false;
+  answerIndex = Math.round(Math.random() * (answerButtons.length - 1));
+  for (let l = 0; l < answerButtons.length; l++) {
+    answerButtons[l].style.display = "none"
+    if (l === answerIndex) {
+      answerButtons[l].innerText = questionNumber.correct_answer;
+      answerButtons[l].style.display = "block"
+    } else {
+      const numberOfWrongAnswers =
+        questionNumber.incorrect_answers.length;
+      if ((numberOfWrongAnswers === 1)) {
+         if (singleWrongAnswer === false) {
+          answerButtons[l].innerText =
+          questionNumber.incorrect_answers;
+          answerButtons[l].style.display = "block"
+          singleWrongAnswer = true
+        }
+      } else {
+        answerButtons[l].innerText =
+          questionNumber.incorrect_answers[wrongAnswersIndex];
+        wrongAnswersIndex += 1;
+        answerButtons[l].style.display = "block";
+      }
+    }
   }
-
-  // Mostrare solo i pulsanti per le risposte esistenti
-  for (let i = 0; i < questionNumber.incorrect_answers.length; i++) {
-    answerButtons[i].style.display = "block";
-    answerButtons[i].innerHTML = questionNumber.incorrect_answers[i];
-  }
-
-  // Mostrare il pulsante per la risposta corretta
-  answerButtons[questionNumber.incorrect_answers.length].style.display =
-    "block";
-  answerButtons[questionNumber.incorrect_answers.length].innerHTML =
-    questionNumber.correct_answer;
 }
-
 displayQuestion();
 
 // Creiamo una funzione per gestire la risposta dell'utente
@@ -165,16 +172,26 @@ function handleAnswer(event) {
   } else {
     // Quiz completato, visualizziamo il punteggio finale
     questionElement.innerHTML = "Quiz completato!";
-    option1Element.style.display = "none";
-    option2Element.style.display = "none";
-    option3Element.style.display = "none";
-    option4Element.style.display = "none";
+    for (let i = 0; i <answerButtons.length; i++) {
+      answerButtons[i].style.display = "none"
+    }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
   }
 }
 
+//Impostiamo un timer per le risposte che cambi domanda alla scadenza
+toAddTimer.innerText = count + "s";
+const timer = setInterval(function () {
+  if (count > 0) {
+    count--;
+  }
+  if (count === 0) {
+    toAddTimer.innerText = 0 + "s"
+    handleAnswer()
+  } else toAddTimer.innerHTML = count + "s";
+}, 1000);
 // Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta
-option1Element.addEventListener("click", handleAnswer);
-option2Element.addEventListener("click", handleAnswer);
-option3Element.addEventListener("click", handleAnswer);
-option4Element.addEventListener("click", handleAnswer);
+for (let i = 0; i <answerButtons.length; i++) {
+  answerButtons[i].addEventListener("click", handleAnswer)
+}
+
