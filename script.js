@@ -140,7 +140,7 @@ const setUpTimer = function () {
 function pageCounter() {
   if (contatore < 10) {
     contatore++;
-    counterTitle.innerText = 'QUESTION ' + contatore + ' / 10';
+    counterTitle.innerHTML = 'QUESTION ' + contatore + '<span class="dark-pink"> / 10</span>';
   }
 }
 
