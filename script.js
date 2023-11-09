@@ -108,10 +108,10 @@ const circle = document.querySelector(".animation");
 let questionNumberIndex = 0;
 let answerIndex = 0;
 let score = 0;
-let countTimer = 30;
+const MAXTIMERVALUE = 30;
+let countTimer = MAXTIMERVALUE;
 let timer;
 let contatore = 1;
-let secondsCancelled = false;
 
 
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
@@ -121,9 +121,6 @@ function setRandomOrder(questions) {
     [questions[i], questions[shuffle]] = [questions[shuffle], questions[i]];
   }
 }
-
-// Chiamiamo la variabile che detta un ordine casuale per il display delle domande subito prima di avviare la funzione che le mostra
-setRandomOrder(questions);
 
 //Settiamo la gestione del countdown. La funzione viene richiamata ogni volta che termina il timer avviato con la setInterval()
 const setUpTimer = function () {
@@ -151,7 +148,7 @@ function pageCounter() {
 // Creaimo una funzione per visualizzare la domanda corrente
 function randomAnswers() {
   clearInterval(timer);
-  countTimer = 30;
+  countTimer = MAXTIMERVALUE;
   toAddTimer.innerText = countTimer;
   timer = setInterval(setUpTimer, 1000);
   const questionNumber = questions[questionNumberIndex];
@@ -183,7 +180,6 @@ function randomAnswers() {
     }
   }
 }
-randomAnswers();
 
 // Creiamo una funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
@@ -210,16 +206,19 @@ function handleAnswer(event) {
       answerButtons[i].style.display = "none";
     }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
-
-    if (!secondsCancelled){
-      circle.style.display = "none";
-      counterTitle.style.display = "none";
-    }
+    circle.style.display = "none";
+    counterTitle.style.display = "none";
   }
 }
 
-// Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta e conteggiare il numero di domande
-for (let i = 0; i < answerButtons.length; i++) {
-  answerButtons[i].addEventListener("click", handleAnswer);
-  answerButtons[i].addEventListener("click", pageCounter);
+function setUpPage() {
+  setRandomOrder(questions);
+  randomAnswers();
+  for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].addEventListener("click", handleAnswer);
+    answerButtons[i].addEventListener("click", pageCounter);
+  }
 }
+
+//Triggeriamo le funzioni al load della pagina e aggiungiamo l'evento onclick ai bottoni per gestire la risposta e conteggiare il numero di domande
+window.addEventListener("load", setUpPage)
