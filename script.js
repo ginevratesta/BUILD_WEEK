@@ -100,8 +100,8 @@ const answerButtons = document.querySelectorAll(".button");
 const scoreElement = document.querySelector("#score");
 const toAddTimer = document.querySelector("#countdown");
 const counterTitle = document.querySelector("#contatore");
-const seconds = document.querySelector("#prova");
-const tempo = document.querySelector("#prova2")
+const seconds = document.querySelector("#tempo");
+const tempo = document.querySelector("#tempo2")
 
 // Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
@@ -206,7 +206,7 @@ function handleAnswer(event) {
     randomAnswers();
   } else {
     // Quiz completato, visualizziamo il punteggio finale
-    questionElement.innerHTML = "Quiz completato!";
+    questionElement.innerText = "Quiz completato!";
     for (let i = 0; i < answerButtons.length; i++) {
       answerButtons[i].style.display = "none";
     }
