@@ -101,7 +101,8 @@ const scoreElement = document.querySelector("#score");
 const toAddTimer = document.querySelector("#countdown");
 const counterTitle = document.querySelector("#contatore");
 const seconds = document.querySelector("#tempo");
-const tempo = document.querySelector("#tempo2")
+const tempo = document.querySelector("#tempo2");
+const circle = document.querySelector(".animation");
 
 // Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
@@ -109,9 +110,7 @@ let answerIndex = 0;
 let score = 0;
 let countTimer = 30;
 let timer;
-let timerCancelled = false;
 let contatore = 1;
-let pageCounterCancelled = false;
 let secondsCancelled = false;
 
 
@@ -212,16 +211,9 @@ function handleAnswer(event) {
     }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
 
-    if (!timerCancelled) {
-      toAddTimer.style.display = "none";
-    }
-
-    if (!pageCounterCancelled) {
-      counterTitle.style.display = "none";
-    }
     if (!secondsCancelled){
-      seconds.style.display = "none";
-      tempo.style.display = "none"
+      circle.style.display = "none";
+      counterTitle.style.display = "none";
     }
   }
 }
