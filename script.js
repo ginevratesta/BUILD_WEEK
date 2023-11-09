@@ -99,7 +99,7 @@ const questionElement = document.querySelector("#question");
 const answerButtons = document.querySelectorAll(".button");
 const scoreElement = document.querySelector("#score");
 const toAddTimer = document.querySelector("#countdown");
-const counterTitle = document.querySelector('#contatore');
+const counterTitle = document.querySelector("#contatore");
 
 // Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
@@ -134,27 +134,27 @@ const setUpTimer = function () {
   } else {
     toAddTimer.innerHTML = countTimer + "s";
   }
-}
+};
 
 //Creiamo una funzione che indica a che domanda si è arrivati
 function pageCounter() {
   if (contatore < 10) {
     contatore++;
-    counterTitle.innerHTML = 'QUESTION ' + contatore + '<span class="dark-pink"> / 10</span>';
+    counterTitle.innerHTML =
+      "QUESTION " + contatore + '<span class="dark-pink"> / 10</span>';
   }
 }
-
 
 // Creaimo una funzione per visualizzare la domanda corrente
 function randomAnswers() {
   clearInterval(timer);
   countTimer = 30;
   toAddTimer.innerText = countTimer + "s";
-  timer = setInterval(setUpTimer, 1000)
+  timer = setInterval(setUpTimer, 1000);
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerText = questionNumber.question;
 
-  let wrongAnswersIndex = 0
+  let wrongAnswersIndex = 0;
   let singleWrongAnswer = false;
 
   answerIndex = Math.round(Math.random() * (answerButtons.length - 1));
@@ -164,12 +164,10 @@ function randomAnswers() {
       answerButtons[l].innerText = questionNumber.correct_answer;
       answerButtons[l].style.display = "block";
     } else {
-      const numberOfWrongAnswers =
-        questionNumber.incorrect_answers.length;
+      const numberOfWrongAnswers = questionNumber.incorrect_answers.length;
       if (numberOfWrongAnswers === 1) {
-         if (singleWrongAnswer === false) {
-          answerButtons[l].innerText =
-          questionNumber.incorrect_answers;
+        if (singleWrongAnswer === false) {
+          answerButtons[l].innerText = questionNumber.incorrect_answers;
           answerButtons[l].style.display = "block";
           singleWrongAnswer = true;
         }
@@ -186,7 +184,7 @@ randomAnswers();
 
 // Creiamo una funzione per gestire la risposta dell'utente
 function handleAnswer(event) {
-  let selectedAnswer; 
+  let selectedAnswer;
   const questionNumber = questions[questionNumberIndex];
   if (event === undefined) {
     selectedAnswer = "";
@@ -205,24 +203,23 @@ function handleAnswer(event) {
   } else {
     // Quiz completato, visualizziamo il punteggio finale
     questionElement.innerHTML = "Quiz completato!";
-    for (let i = 0; i <answerButtons.length; i++) {
+    for (let i = 0; i < answerButtons.length; i++) {
       answerButtons[i].style.display = "none";
     }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
-    
+
     if (!timerCancelled) {
-      toAddTimer.style.display = "none"
+      toAddTimer.style.display = "none";
     }
 
-    if(!pageCounterCancelled) {
-      counterTitle.style.display = "none"
+    if (!pageCounterCancelled) {
+      counterTitle.style.display = "none";
     }
   }
 }
 
-
 // Aggiungiamo un evento onclick a ciascuna opzione per gestire la risposta e conteggiare il numero di domande
-for (let i = 0; i <answerButtons.length; i++) {
+for (let i = 0; i < answerButtons.length; i++) {
   answerButtons[i].addEventListener("click", handleAnswer);
-  answerButtons[i].addEventListener('click', pageCounter);
+  answerButtons[i].addEventListener("click", pageCounter);
 }

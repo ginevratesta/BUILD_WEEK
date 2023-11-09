@@ -34,13 +34,24 @@
       </li>
     </ul>
     <div id="flex">
-      <div>
-        <input id="checkBox" type="checkbox" />
+      <div id="adjust">
+        <label id="label-check" for="checkBox" name="checkBoxGroup">
+            <input id="checkBox" type="checkbox" name="checkBoxGroup" />
+            
+            <!--le classi impostate all'icona fanno parte della nomenclatura di font-awesome:
+            fas vuol dire font-awesome solid, stiamo dicendo al browser di utilizzare l'icona "check" 
+            dall'insieme di icone "Solid" di Font Awesome. La classe "fas" indica che si tratta di un'icona solida. -->
+            <span class="check-icon"><i class="fas fa-check"></i></span>
+          </label>
         <span><b>I promise to answer myself without help from anyone</b></span>
       </div>
       <button id="changePage"><b>PROCEED</b></button>
     </div>
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <script src="./first.js"></script>
   </body>
 </html>

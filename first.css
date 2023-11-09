@@ -23,9 +23,42 @@ img {
   margin-top: 10%;
 }
 
-input {
-  background-color: blue;
+#adjust {
+  display: flex;
+  align-items: center;
 }
+
+#label-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+  background-color: transparent;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+#checkBox {
+  cursor: pointer;
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+}
+
+#label-check .check-icon {
+  display: none;
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+#checkBox:checked,
+#label-check .check-icon {
+  display: inline-block;
+}
+
 button {
   background-color: #6cf8f8;
   -webkit-box-shadow: 0px 0px 41px 5px rgba(108, 248, 248, 0.66);
