@@ -100,6 +100,8 @@ const answerButtons = document.querySelectorAll(".button");
 const scoreElement = document.querySelector("#score");
 const toAddTimer = document.querySelector("#countdown");
 const counterTitle = document.querySelector("#contatore");
+const seconds = document.querySelector("#prova");
+const tempo = document.querySelector("#prova2")
 
 // Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
@@ -110,6 +112,8 @@ let timer;
 let timerCancelled = false;
 let contatore = 1;
 let pageCounterCancelled = false;
+let secondsCancelled = false;
+
 
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
@@ -128,11 +132,11 @@ const setUpTimer = function () {
     countTimer--;
   }
   if (countTimer === 0) {
-    toAddTimer.innerText = 0 + "s";
+    toAddTimer.innerText = 0;
     handleAnswer();
     pageCounter();
   } else {
-    toAddTimer.innerHTML = countTimer + "s";
+    toAddTimer.innerHTML = countTimer;
   }
 };
 
@@ -149,7 +153,7 @@ function pageCounter() {
 function randomAnswers() {
   clearInterval(timer);
   countTimer = 30;
-  toAddTimer.innerText = countTimer + "s";
+  toAddTimer.innerText = countTimer;
   timer = setInterval(setUpTimer, 1000);
   const questionNumber = questions[questionNumberIndex];
   questionElement.innerText = questionNumber.question;
@@ -214,6 +218,10 @@ function handleAnswer(event) {
 
     if (!pageCounterCancelled) {
       counterTitle.style.display = "none";
+    }
+    if (!secondsCancelled){
+      seconds.style.display = "none";
+      tempo.style.display = "none"
     }
   }
 }

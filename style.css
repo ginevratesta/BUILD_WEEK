@@ -50,14 +50,11 @@ button:hover {
   border-right: #900080;
 }
 
-p {
+#score {
   text-align: center;
   color: white;
 }
 
-#countdown {
-  color: white;
-}
 
 #contatore {
   color: white;
@@ -70,4 +67,25 @@ p {
 .dark-pink {
   margin-left: 3px;
   color: #900080;
+}
+
+.timerDirection{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 10%;
+}
+#countdown {
+  color: white;
+  font-size: 70px;
+  margin: 0;
+}
+.animation{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+}
+.secondi{
+font-size: 15px;
+font-weight: bolder;
 }
