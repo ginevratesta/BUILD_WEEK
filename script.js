@@ -100,9 +100,8 @@ const answerButtons = document.querySelectorAll(".button");
 const scoreElement = document.querySelector("#score");
 const toAddTimer = document.querySelector("#countdown");
 const counterTitle = document.querySelector("#contatore");
-const seconds = document.querySelector("#tempo");
-const tempo = document.querySelector("#tempo2");
-const circle = document.querySelector(".animation");
+const numericTimer = document.querySelector(".animation");
+const circle = document.querySelector(".circle");
 
 // Dichiariamo le variabili per tenere traccia del quiz
 let questionNumberIndex = 0;
@@ -112,7 +111,6 @@ const MAXTIMERVALUE = 30;
 let countTimer = MAXTIMERVALUE;
 let timer;
 let contatore = 1;
-
 
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
@@ -126,6 +124,10 @@ function setRandomOrder(questions) {
 const setUpTimer = function () {
   if (countTimer > 0) {
     countTimer--;
+    circle.classList.add("animatedCircle");
+  }
+  if(countTimer <= 10){
+    circle.style.stroke = "red"
   }
   if (countTimer === 0) {
     toAddTimer.innerText = 0;
@@ -206,8 +208,9 @@ function handleAnswer(event) {
       answerButtons[i].style.display = "none";
     }
     scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
-    circle.style.display = "none";
+    numericTimer.style.display = "none";
     counterTitle.style.display = "none";
+    circle.style.display = "none";
   }
 }
 
@@ -221,4 +224,4 @@ function setUpPage() {
 }
 
 //Triggeriamo le funzioni al load della pagina e aggiungiamo l'evento onclick ai bottoni per gestire la risposta e conteggiare il numero di domande
-window.addEventListener("load", setUpPage)
+window.addEventListener("load", setUpPage);
