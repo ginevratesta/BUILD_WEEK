@@ -77,7 +77,7 @@ button:hover {
 }
 #countdown {
   color: white;
-  font-size: 70px;
+  font-size: 50px;
   margin: 0;
 }
 .animation{
@@ -87,6 +87,6 @@ button:hover {
   align-items: center;
 }
 .secondi{
-font-size: 15px;
+font-size: 10px;
 font-weight: bolder;
 }
