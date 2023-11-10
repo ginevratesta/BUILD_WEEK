@@ -8,7 +8,6 @@ h1 {
   color: white;
   font-weight: 100;
   margin-bottom: 70px;
-
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -56,7 +55,6 @@ button:hover {
   color: white;
 }
 
-
 #contatore {
   color: white;
   text-align: center;
@@ -70,7 +68,7 @@ button:hover {
   color: #900080;
 }
 
-.timerDirection{
+.timerDirection {
   position: relative;
   display: flex;
   flex-direction: row-reverse;
@@ -81,9 +79,9 @@ button:hover {
   font-size: 50px;
   margin: 0;
 }
-.animation{
+.animation {
   position: absolute;
-  top:40px;
+  top: 40px;
   right: 50px;
   display: flex;
   flex-direction: column;
@@ -92,9 +90,15 @@ button:hover {
   color: white;
 }
 
-.secondi{
-font-size: 10px;
-font-weight: bolder;
+.secondi {
+  font-size: 10px;
+  font-weight: bolder;
+}
+
+.animatedCircle {
+  stroke-dasharray: 440;
+  stroke-dashoffset: 0;
+  animation: radialFadeOut 30s forwards linear;
 }
 
 @keyframes radialFadeOut {
@@ -105,10 +109,3 @@ font-weight: bolder;
     stroke-dashoffset: 440;
   }
 }
-
-.animatedCircle {
-  stroke-dasharray: 440;
-  stroke-dashoffset: 10;
-  animation: radialFadeOut 29s forwards linear;
-}
-

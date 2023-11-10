@@ -126,17 +126,30 @@ const setUpTimer = function () {
     countTimer--;
     circle.classList.add("animatedCircle");
   }
-  if(countTimer <= 10){
-    circle.style.stroke = "red"
+  if (countTimer <= 10) {
+    circle.style.stroke = "red";
   }
   if (countTimer === 0) {
+    circle.style.stroke = "rgb(108, 248, 248)";
     toAddTimer.innerText = 0;
     handleAnswer();
     pageCounter();
+    restartAnimation();
   } else {
     toAddTimer.innerHTML = countTimer;
   }
 };
+
+//Creiamo una funzione che fa ripartire l'animazione del timer circolare da 0
+function restartAnimation() {
+  circle.classList.remove("animatedCircle");
+
+  void circle.offsetWidth;
+
+  setTimeout(function () {
+    circle.classList.add("animatedCircle");
+  }, 10);
+}
 
 //Creiamo una funzione che indica a che domanda si è arrivati
 function pageCounter() {
@@ -149,6 +162,7 @@ function pageCounter() {
 
 // Creaimo una funzione per visualizzare la domanda corrente
 function randomAnswers() {
+  restartAnimation();
   clearInterval(timer);
   countTimer = MAXTIMERVALUE;
   toAddTimer.innerText = countTimer;
