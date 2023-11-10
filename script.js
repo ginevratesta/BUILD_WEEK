@@ -219,11 +219,11 @@ function handleAnswer(event) {
     randomAnswers();
   } else {
     // Quiz completato, visualizziamo il punteggio finale
-    questionElement.innerText = "Quiz completato!";
+    questionElement.innerText = "Quiz completed!";
     for (let i = 0; i < answerButtons.length; i++) {
       answerButtons[i].style.display = "none";
     }
-    scoreElement.innerText = `Punteggio finale: ${score} su ${questions.length}`;
+    scoreElement.innerText = `Final score: ${score} su ${questions.length}`;
     numericTimer.style.display = "none";
     counterTitle.style.display = "none";
     circle.style.display = "none";
