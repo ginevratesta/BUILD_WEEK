@@ -111,6 +111,8 @@ const MAXTIMERVALUE = 30;
 let countTimer = MAXTIMERVALUE;
 let timer;
 let contatore = 1;
+var lauAudio = new Audio('./assets/laugh.mp3');
+var appAudio = new Audio('./assets/applause.wav')
 
 // Creiamo una funzione che permetta alle domande di presentarsi sempre in ordine casuale
 function setRandomOrder(questions) {
@@ -139,6 +141,8 @@ const setUpTimer = function () {
     toAddTimer.innerHTML = countTimer;
   }
 };
+
+
 
 //Creiamo una funzione che fa ripartire l'animazione del timer circolare da 0
 function restartAnimation() {
@@ -211,6 +215,9 @@ function handleAnswer(event) {
 
   if (selectedAnswer === questionNumber.correct_answer) {
     score++;
+    appAudio.play()
+  } else {
+    lauAudio.play();
   }
 
   questionNumberIndex++;
