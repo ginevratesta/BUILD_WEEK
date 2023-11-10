@@ -23,6 +23,8 @@ body {
 .flex {
   justify-content: center;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .button-container {
   flex-direction: column;
@@ -31,7 +33,7 @@ body {
 }
 .button {
   border-color: white;
-  width: 80%;
+  width: 350px;
   height: 60px;
   font-weight: bold;
   color: white;
