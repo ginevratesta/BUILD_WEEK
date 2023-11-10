@@ -223,7 +223,7 @@ function handleAnswer(event) {
     for (let i = 0; i < answerButtons.length; i++) {
       answerButtons[i].style.display = "none";
     }
-    scoreElement.innerText = `Final score: ${score} su ${questions.length}`;
+    scoreElement.innerText = `Final score: ${score} out of ${questions.length}`;
     numericTimer.style.display = "none";
     counterTitle.style.display = "none";
     circle.style.display = "none";
