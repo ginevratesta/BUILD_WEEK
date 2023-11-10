@@ -1,12 +1,13 @@
 img {
   margin-left: 100px;
   width: 15%;
-  padding-top: 50px;
+  margin-top: 30px;
 }
 h1 {
   text-align: center;
   color: white;
   font-weight: 100;
+  margin-top:20px;
   margin-bottom: 70px;
 }
 body {
