@@ -144,6 +144,8 @@ const setUpTimer = function () {
 function restartAnimation() {
   circle.classList.remove("animatedCircle");
 
+  circle.style.stroke = "rgb(108, 248, 248)";
+
   void circle.offsetWidth;
 
   setTimeout(function () {
